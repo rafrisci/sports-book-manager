@@ -1,1 +1,1 @@
-# sports_book_manager
+# sports-book-manager
