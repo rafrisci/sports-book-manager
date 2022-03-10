@@ -1,14 +1,16 @@
 #!/usr/bin/env python3
 """
-Get the probability an event occurs at the margin set with the market line.
+Converts the line in the data into probability the outcome occurs.
 
-the model mean is added to the line because the model being positive means the
-model expects the team to be better. However, the line being positive means the
-market expects the team to be worse. Since they are calculated differently,
-the line needs to change signs to match the model output.
+This function assumes that the line are presented in American line. This means
+that 'favorites' are given line -100 or lower while 'underdogs' are given line
+100 or greater.
 """
-from scipy.stats import norm
 
-def model_probability(model_mean, model_sd, line):
-    z_score = (model_mean + line)/model_sd
-    return norm.cdf(z_score)
+def implied_probability_calculator(line):
+    if abs(int(line)) < 100:
+        raise ValueError('American lines must be three digits or longer.')
+    if line < 0:
+        return round((abs(line)/(abs(line) + 100)), 4)
+    else:
+        return round((100/(line + 100)), 4)
