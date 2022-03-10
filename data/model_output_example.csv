@@ -1,0 +1,24 @@
+team,opponent,mean_win_margin,sd
+Colorado Avalanche,New Jersey Devils,1.8,0.56
+New Jersey Devils,Colorado Avalanche,-1.8,0.56
+Florida Panthers,Pittsburgh Penguins,1.68,0.86
+Pittsburgh Penguins,Florida Panthers,-1.68,0.86
+Vegas Golden Knights,Philadelphia Flyers,1.72,0.43
+Philadelphia Flyers,Vegas Golden Knights,-1.72,0.43
+Arizona Coyotes,Detroit Red Wings,-1.21,0.38
+Detroit Red Wings,Arizona Coyotes,1.21,0.38
+Seattle Kraken,Toronto Maple Leafs,-1.65,0.51
+Toronto Maple Leafs,Seattle Kraken,1.65,0.51
+Ottawa Senators,St. Louis Blues,-1.95,0.68
+St. Louis Blues,Ottawa Senators,1.95,0.68
+New York Rangers,Minnesota Wild,-1.2,0.56
+Minnesota Wild,New York Rangers,1.2,0.56
+Dallas Stars,Nashville Predators,-0.97,0.68
+Nashville Predators,Dallas Stars,0.97,0.68
+Tampa Bay Lightning,Winnipeg Jets,1.68,0.33
+Winnipeg Jets,Tampa Bay Lightning,-1.68,0.33
+Anaheim Ducks,Chicago Blackhawks,-0.73,0.85
+Chicago Blackhawks,Anaheim Ducks,0.73,0.85
+Washington Capitals,Calgary Flames,-1.23,0.42
+Calgary Flames,Washington Capitals,1.23,0.42
+
