@@ -9,6 +9,9 @@ setup(
     url='https://github.com/rafrisci/sports-book-manager',
     packages = find_packages(),
     include_package_data=True,
+    package_data={
+        '': ['data/*.csv']
+    },
     install_requires=[
         'selenium',
         'scipy',
