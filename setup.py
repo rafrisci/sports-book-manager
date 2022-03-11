@@ -8,10 +8,10 @@ setup(
     description='Get the odds in your favor',
     url='https://github.com/rafrisci/sports-book-manager',
     packages = find_packages(),
-    include_package_data=True,
     package_data={
         '': ['data/*.csv']
     },
+    include_package_data=True,
     install_requires=[
         'selenium',
         'scipy',
