@@ -11,10 +11,20 @@ def model_probability(model_mean, model_sd, line):
     """
     Get the probability an event occurs at the margin set with the market line.
 
-    Parameters:
-        model_mean: the expected margin of victory from the model
-        model_sd: the standard deviation of the model's margin of victory
-        line: the margin of victory the market is setting the wager at
+    Parameters
+    ----------
+        model_mean: float
+            the expected margin of victory from the model
+        model_sd: float
+            the standard deviation of the model's margin of victory
+        line: float
+            the margin of victory the market is setting the wager at
+
+    Returns
+    -------
+    int
+        The model's expected probability of the team winning accounting for the
+        line.
     """
     z_score = (model_mean + line)/model_sd
     return norm.cdf(z_score)

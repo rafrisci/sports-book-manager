@@ -9,8 +9,15 @@ def implied_probability_calculator(odds):
     """
     Converts odds in the data into probability the outcome occurs.
 
-    Parameters:
+    Parameters
+    ----------
         odds: the weighted return on the wager made if correct
+
+    Returns
+    -------
+    int
+        The market's expected probability of the team winning accounting for
+        the line.
     """
 
     if abs(int(line)) < 100:
