@@ -14,10 +14,6 @@ setup(
         'scipy',
         'pandas'
     ],
-    data_files=[("data",["hockey_odds.csv",
-                 "model_output_example.csv"]),
-                ("",["README.md"])
-    ],
     classifiers=[
         "Programming Language :: Python :: 3",
         "License :: OSI Approved :: MIT License",
