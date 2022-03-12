@@ -8,6 +8,7 @@ setup(
     description='Get the odds in your favor',
     url='https://github.com/rafrisci/sports-book-manager',
     packages = find_packages(),
+    packages.append('data'),
     include_package_data=True,
     install_requires=[
         'selenium',
