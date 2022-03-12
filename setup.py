@@ -14,11 +14,9 @@ setup(
         'scipy',
         'pandas'
     ],
-    data_files=[("sports-book-manager",
-                 ["data/hockey_odds.csv",
-                  "data/model_output_example.csv",
-                  "README.md",
-                  "LICENSE"])
+    data_files=[("data",["hockey_odds.csv",
+                 "model_output_example.csv"]),
+                ("",["README.md"])
     ],
     classifiers=[
         "Programming Language :: Python :: 3",
