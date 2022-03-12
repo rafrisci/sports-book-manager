@@ -8,7 +8,7 @@ def _find_packages():
 
 
 setup(
-    name='sports-book-manager',
+    name='sports_book_manager',
     version='1.0.0',
     author='Ross Friscia',
     author_email='rafrisci@uw.edu',
