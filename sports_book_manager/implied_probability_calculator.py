@@ -22,7 +22,7 @@ def implied_probability_calculator(odds):
 
     if abs(int(odds)) < 100:
         raise ValueError('American lines must be three digits or longer.')
-    if line < 0:
+    if odds < 0:
         return round((abs(odds)/(abs(odds) + 100)), 4)
     else:
         return round((100/(odds + 100)), 4)
