@@ -4,6 +4,7 @@ from setuptools import setup, find_packages
 def _find_packages():
     packages = find_packages()
     packages.append('sports_book_manager.data')
+    packages.append('sports_book_manager.examples')
     return packages
 
 
@@ -17,6 +18,7 @@ setup(
     packages = _find_packages(),
     package_dir={
         'sports_book_manager.data': 'data',
+        'sports_book_manager.examples': 'examples',
         'sports_book_manager': 'sports_book_manager'
     },
     include_package_data=True,
