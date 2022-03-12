@@ -1,5 +1,11 @@
 from setuptools import setup, find_packages
 
+def _find_packages():
+    packages = find_packages()
+    packages.append('data')
+    return packages
+
+
 setup(
     name='sports-book-manager',
     version='1.0.0',
@@ -7,8 +13,7 @@ setup(
     author_email='rafrisci@uw.edu',
     description='Get the odds in your favor',
     url='https://github.com/rafrisci/sports-book-manager',
-    packages = find_packages(),
-    packages.append('data'),
+    packages = _find_packages(),
     include_package_data=True,
     install_requires=[
         'selenium',
