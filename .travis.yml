@@ -1,0 +1,24 @@
+language: python
+
+python:
+    - 3.8
+
+branches:
+    only:
+        - master
+
+install
+    - pip install coverage
+    - pip install coveralls
+    - pip install pycodestyle
+    - pip install -r requirements.txt
+
+before_script:
+    - pycodestyle sports_book_manager
+
+script:
+    - coverage run -m unittest discover sports_book_manager
+
+after_success:
+    - coverage report
+    - coveralls
