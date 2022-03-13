@@ -114,6 +114,9 @@ class BookScraper(object):
         None.
 
         """
+        #makes sure the user inputs directories in dictionary
+        if not isinstance(directories, dict):
+            raise TypeError('directories must be stored as dicts')
         self.domain = domain
         self.directories = directories
         self.ancestor_container = None
