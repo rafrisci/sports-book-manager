@@ -2,7 +2,7 @@
 from setuptools import setup, find_packages
 
 def _find_packages():
-    packages = find_packages()
+    packages = find_packages(exclude=["*.tests", "*.tests.*", "tests.*", "tests"])
     packages.append('sports_book_manager.data')
     packages.append('sports_book_manager.examples')
     return packages

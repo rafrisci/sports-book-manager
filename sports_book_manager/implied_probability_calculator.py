@@ -1,7 +1,7 @@
 #!/usr/bin/env python3
 """
-This function assumes that the line are presented in American line. This means
-that 'favorites' are given line -100 or lower while 'underdogs' are given line
+This function assumes that the odds are presented in American odds. This means
+that 'favorites' are given line -100 or lower while 'underdogs' are given odds
 100 or greater.
 """
 

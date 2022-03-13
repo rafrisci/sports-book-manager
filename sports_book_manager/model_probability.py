@@ -26,5 +26,5 @@ def model_probability(model_mean, model_sd, line):
         The model's expected probability of the team winning accounting for the
         line.
     """
-    z_score = (model_mean + line)/model_sd
+    z_score = (model_mean + line)/abs(model_sd)
     return norm.cdf(z_score)
