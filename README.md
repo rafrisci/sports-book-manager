@@ -5,7 +5,7 @@
 
 # sports-book-manager
 Sports-book-manager helps programmers connect their model predictions to the sports book of their choice. By inputting the necessary html information into an instance of the BookScraper class, users can get back all wagers of the sports book of their choice. This, along with a couple of python modules to convert and compare market odds to model outputs, does the tedious work for the user and saves them time.
-
+---
 ## Project Organization
 ```
 AWS-foryou/
@@ -50,6 +50,6 @@ Finally run the setup.py to download the package
 ```bash
 sudo python setup.py install
 ```
-
+---
 ## Usage
 See the [example notebook](examples/example.ipynb) to see how the package works, using PointsBet and the [data files](data/).
