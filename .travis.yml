@@ -15,4 +15,4 @@ language: python
 python: 
   - 3.8
 script: 
-  - "coverage run -m unittest discover sports_book_manager/tests"
+  - "coverage run --source sports-book-manager.sports_book_manager -m unittest discover"
