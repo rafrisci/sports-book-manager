@@ -5,6 +5,7 @@
 
 # sports-book-manager
 Sports-book-manager helps programmers connect their model predictions to the sports book of their choice. By inputting the necessary html information into an instance of the BookScraper class, users can get back all wagers of the sports book of their choice. This, along with a couple of python modules to convert and compare market odds to model outputs, does the tedious work for the user and saves them time.
+
 ---
 ## Project Organization
 ```
