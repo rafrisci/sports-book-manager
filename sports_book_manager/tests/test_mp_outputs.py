@@ -1,15 +1,14 @@
 #!/usr/bin/env python3
 import sports_book_manager.model_probability as mp
+import unittest
 
-def smoke_test(model_mean, model_sd, line):
+class TestMP(unittest.TestCase):
     """
-    Test to make sure outputs are occuring with valid inputs.
+    Tests valid inputs for model_probability return results.
     """
-    try:
-        mp.model_probability(model_mean, model_sd, line)
-        return True
-    except:
-        return False
-
-smoke_test(-0.5,0.5,0.5)
-smoke_test(4,0.86,-2.6)
+    def valid_tests(self):
+        """
+        Tests to make sure outputs are occuring with valid inputs.
+        """
+        self.assertTrue(mp.model_probability(-0.5, 0.5, 0.5))
+        self.assertTrue(mp.model_probability(4, 0.86, -2.6))
