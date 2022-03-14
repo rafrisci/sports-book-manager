@@ -31,9 +31,24 @@ AWS-foryou/
 ```
 ---
 ## Installation
-From your command line run the following:
+### On Windows Anaconda
+Enter the following into your command prompt
 ```bash
 pip3 install git+git://github.com/rafrisci/sports-book-manager
+```
+### On Linux
+First create a clone of the repository
+```bash
+git clone https://github.com/rafrisci/sports-book-manager
+```
+Then go into the project directory and install the requirements
+```bash
+cd sports-book-manager
+python -m pip install -r requirements.txt
+```
+Finally run the setup.py to download the package
+```bash
+sudo python setup.py install
 ```
 
 ## Usage
