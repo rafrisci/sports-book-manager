@@ -7,6 +7,7 @@ the line needs to change signs to match the model output.
 """
 from scipy.stats import norm
 
+
 def model_probability(model_mean, model_sd, line):
     """
     Get the probability an event occurs at the margin set with the market line.

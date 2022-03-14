@@ -2,6 +2,7 @@
 import sports_book_manager.model_probability as mp
 import unittest
 
+
 class TestMP(unittest.TestCase):
     """
     Tests valid inputs for model_probability return results.

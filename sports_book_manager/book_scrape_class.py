@@ -2,19 +2,19 @@
 """
 Creates the BookScraper class. It then uses the instances of the class to start
 a Selenium scrape and output a pandas df with the teams, spread, and odds of
-the league of choice. 
+the league of choice.
 """
 from selenium import webdriver
 from selenium.webdriver.common.by import By
 import time
 import pandas as pd
 
-#creating baseclass scraper
+
+#  creating baseclass scraper
 class BookScraper(object):
     """
     A class to store and update domain, directories, and html properties of a
     sports book website.
-
     Attributes
     ----------
         domain: str
@@ -52,8 +52,6 @@ class BookScraper(object):
         driver_path: str, optional
             the path to your chromedriver. Only needed if webdriver.Chrome()
             returns an error
-
-
     Methods
     -------
     update_directories:
@@ -62,19 +60,16 @@ class BookScraper(object):
         changes all called parameters to their new value.
     retrieve_sports_book:
         runs the scraper to get all events of a league.
-
     """
     def __init__(self, domain, directories):
         """
-        Constructs all necessary attributes for the scraper. 
-
+        Constructs all necessary attributes for the scraper.
         Parameters
         ----------
         domain: str
             base website path
         directories: dict
             league names as keys and directory paths as values
-
         Attributes
         ----------
         ancestor_container: str
@@ -108,13 +103,11 @@ class BookScraper(object):
         driver_path: str, optional
             the path to your chromedriver. Only needed if webdriver.Chrome()
             returns an error
-
         Returns
         -------
         None.
-
         """
-        #makes sure the user inputs directories in dictionary
+        #  makes sure the user inputs directories in dictionary
         if not isinstance(directories, dict):
             raise TypeError('directories must be stored as dicts')
         self.domain = domain
@@ -134,25 +127,23 @@ class BookScraper(object):
         self.line_class = None
         self.odds_class = None
         self.driver_path = None
-    #update directory dicts of website
+
+    #  update directory dicts of website
     def update_directories(self, new_directories):
         """
         Appends or sets a new dict for an instance's directory.
-
         Parameters
         ----------
         new_directories: dict
             updates the directories value if the key exists
-
         Returns
         -------
         None.
-
         """
         for key in new_directories.key():
             self.directories[key] = new_directories[key]
 
-    #make function so user can update all values in one place
+    #  make function so user can update all values in one place
     def update_html_elements(self, ancestor_container=..., event_row=...,
                              team_class=..., line_class=..., odds_class=...,
                              team_parent_tag=..., team_parent_attr=...,
@@ -163,7 +154,6 @@ class BookScraper(object):
                              drive_path=...):
         """
         Changes all called parameters to their new value.
-
         Parameters
         ----------
         ancestor_container : str, optional
@@ -199,27 +189,26 @@ class BookScraper(object):
         drive_path : str, optional
             the path to your chromedriver. Only needed if webdriver.Chrome()
             returns an error
-
         Returns
         -------
         None.
-
         """
         new_vals = locals()
         new_vals.pop('self')
-        FCN_DICT = {'ancestor_container':self.__ancestor_cont,
-                    'event_row':self.__row_cls, 'team_class':self.__team_cls,
-                    'line_class':self.__line_cls, 'odds_class':self.__odds_cls,
+        FCN_DICT = {'ancestor_container': self.__ancestor_cont,
+                    'event_row': self.__row_cls, 'team_class': self.__team_cls,
+                    'line_class': self.__line_cls,
+                    'odds_class': self.__odds_cls,
                     'team_parent_tag': 'team_parent_tag',
-                    'team_parent_attr':'team_parent_attr',
-                    'team_parent_val':'team_parent_val',
-                    'line_parent_tag':'line_parent_tag',
-                    'line_parent_attr':'line_parent_attr',
-                    'line_parent_val':'line_parent_val',
-                    'odds_parent_tag':'odds_parent_tag',
-                    'odds_parent_attr':'odds_parent_attr',
-                    'odds_parent_val':'odds_parent_val',
-                    'new_domain':'domain', 'drive_path':'driver_path'}
+                    'team_parent_attr': 'team_parent_attr',
+                    'team_parent_val': 'team_parent_val',
+                    'line_parent_tag': 'line_parent_tag',
+                    'line_parent_attr': 'line_parent_attr',
+                    'line_parent_val': 'line_parent_val',
+                    'odds_parent_tag': 'odds_parent_tag',
+                    'odds_parent_attr': 'odds_parent_attr',
+                    'odds_parent_val': 'odds_parent_val',
+                    'new_domain': 'domain', 'drive_path': 'driver_path'}
         FCN_FREE = ['team_parent_tag', 'team_parent_attr', 'team_parent_val',
                     'line_parent_tag', 'line_parent_attr', 'line_parent_val',
                     'odds_parent_tag', 'odds_parent_attr', 'odds_parent_val',
@@ -235,17 +224,14 @@ class BookScraper(object):
     def retrieve_sports_book(self, league):
         """
         Runs the Selenium scraper to get all events of a league.
-
         Parameters
         ----------
         league: str
             directories key of sports league you want events for.
-
         Returns
         -------
         pandas df
             A dataframe containing the teams, lines, and odds of all events.
-
         """
         driver = self.__driver_initialize(self.domain,
                                           self.directories[league],
@@ -268,8 +254,8 @@ class BookScraper(object):
         driver.quit()
         return self.__initial_df(team_list, line_list, odds_list)
 
-    #private methods for update_elements
-    #make sure CSS_SELECTOR can read the class values
+    #  private methods for update_elements
+    #  make sure CSS_SELECTOR can read the class values
     def __ancestor_cont(self, container):
         if container[0] == '.':
             self.ancestor_container = container
@@ -300,15 +286,15 @@ class BookScraper(object):
         else:
             self.odds_class = '.' + odds_cls
 
-    #private methods for retrieve_sports_book
-    #open up the driver and start to pull the website data
+    #  private methods for retrieve_sports_book
+    #  open up the driver and start to pull the website data
     def __driver_initialize(self, domain, directory, path):
         driver = webdriver.Chrome(path)
         driver.get(domain + directory)
         time.sleep(10)
         return driver
 
-    #get the event rows of the web page
+    #  get the event rows of the web page
     def __find_event_rows(self, driver, ancestor_container, event_row):
         parent_container = driver.find_element(By.CSS_SELECTOR,
                                                ancestor_container)
@@ -316,9 +302,9 @@ class BookScraper(object):
                                                     event_row)
         return event_rows
 
-    #get the teams in the event row
+    #  get the teams in the event row
     def __get_teams(self, event, team_class, team_parent_tag, team_parent_attr,
-                  team_parent_val, team_list):
+                    team_parent_val, team_list):
         if team_parent_tag and team_parent_attr:
             team_paths = (f".//{team_parent_tag}[contains(@{team_parent_attr}"
                           f", '{team_parent_val}')]")
@@ -331,9 +317,9 @@ class BookScraper(object):
             for team in teams:
                 team_list.append(team.text)
 
-    #get the lines in the event row
+    #  get the lines in the event row
     def __get_lines(self, event, line_class, line_parent_tag, line_parent_attr,
-                  line_parent_val, line_list):
+                    line_parent_val, line_list):
         if line_parent_tag and line_parent_attr:
             line_paths = (f".//{line_parent_tag}[contains(@{line_parent_attr}"
                           f", '{line_parent_val}')]")
@@ -346,9 +332,9 @@ class BookScraper(object):
             for line in lines:
                 line_list.append(line.text)
 
-    #get the odds in the event row
+    #  get the odds in the event row
     def __get_odds(self, event, odds_class, odds_parent_tag, odds_parent_attr,
-                  odds_parent_val, odds_list):
+                   odds_parent_val, odds_list):
         if odds_parent_tag and odds_parent_attr:
             odds_paths = (f".//{odds_parent_tag}[contains(@{odds_parent_attr}"
                           f", '{odds_parent_val}')]")
@@ -361,7 +347,7 @@ class BookScraper(object):
             for odds in spreads:
                 odds_list.append(odds.text)
 
-    #return the dataframe
+    #  return the dataframe
     def __initial_df(self, teams, lines, odds):
         return pd.DataFrame(list(zip(teams, lines, odds)),
                             columns=['Teams', 'Lines', 'Odds'])

@@ -2,6 +2,7 @@
 import sports_book_manager.implied_probability_calculator as ipc
 import unittest
 
+
 class TestIPC(unittest.TestCase):
     """
     Unittests for the implied_probability_calculator.

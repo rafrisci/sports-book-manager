@@ -5,6 +5,7 @@ that 'favorites' are given line -100 or lower while 'underdogs' are given odds
 100 or greater.
 """
 
+
 def implied_probability_calculator(odds):
     """
     Converts odds in the data into probability the outcome occurs.
@@ -19,7 +20,6 @@ def implied_probability_calculator(odds):
         The market's expected probability of the team winning accounting for
         the line.
     """
-
     if abs(int(odds)) < 100:
         raise ValueError('American lines must be three digits or longer.')
     if odds < 0:
