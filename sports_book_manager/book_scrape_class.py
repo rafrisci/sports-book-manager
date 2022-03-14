@@ -140,6 +140,8 @@ class BookScraper(object):
         -------
         None.
         """
+        if not isinstance(new_directories, dict):
+            raise TypeError('directories must be stored and updated as dicts')
         for key in new_directories.key():
             self.directories[key] = new_directories[key]
 
@@ -233,6 +235,9 @@ class BookScraper(object):
         pandas df
             A dataframe containing the teams, lines, and odds of all events.
         """
+        if league not in self.directories.keys():
+            raise ValueError('league value must be a key within the class'
+                             'directory')
         driver = self.__driver_initialize(self.domain,
                                           self.directories[league],
                                           self.driver_path)
