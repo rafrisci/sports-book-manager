@@ -44,14 +44,15 @@ class TestBookScraper(unittest.TestCase):
         conditions
         """
         self.assertIsNone(TS.update_html_elements('faf5he', '3irhs', 'qod93',
-                                                'dsfae31', 'f93jejw', 'button',
-                                                'name', 'w4rds', 'button',
-                                                'name', 'w4rds', 'button',
-                                                'name', 'w4rds',
-                                                r'www.google.com',
-                                                r'C:\chromedrive'))
-        self.assertIsNone(TS.update_html_elements('.f4fshe', '.hales', '.32hdn',
-                                                '.q3hkd', '.bioewon'))
+                                                  'dsfae31', 'f93jejw',
+                                                  'button', 'name', 'w4rds',
+                                                  'button', 'name', 'w4rds',
+                                                  'button', 'name', 'w4rds',
+                                                  r'www.google.com',
+                                                  r'C:\chromedrive'))
+        self.assertIsNone(TS.update_html_elements('.f4fshe', '.hales',
+                                                  '.32hdn', '.q3hkd',
+                                                  '.bioewon'))
 
     def test_retrieve_sports_book(self):
         """
