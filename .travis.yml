@@ -3,6 +3,11 @@ language: python
 python: 
     - 3.8
 
+dist: xenial
+
+services:
+    - xvfb
+
 before_install: 
     - "pip install -U pip"
 
