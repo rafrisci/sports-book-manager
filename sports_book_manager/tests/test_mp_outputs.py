@@ -7,7 +7,7 @@ class TestMP(unittest.TestCase):
     """
     Tests valid inputs for model_probability return results.
     """
-    def valid_tests(self):
+    def test_valid_tests(self):
         """
         Tests to make sure outputs are occuring with valid inputs.
         """

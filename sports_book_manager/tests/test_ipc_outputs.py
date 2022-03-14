@@ -7,7 +7,7 @@ class TestIPC(unittest.TestCase):
     """
     Unittests for the implied_probability_calculator.
     """
-    def invalid_odds(self):
+    def test_invalid_odds(self):
         """
         Tests invalid inputs for the implied_probability calculator to see if
         the ValueError is raised.
@@ -15,7 +15,7 @@ class TestIPC(unittest.TestCase):
         self.assertRaises(ValueError, ipc.implied_probability_calculator,
                           ['help', 40, 15/2])
 
-    def valid_tests(self):
+    def test_valid_tests(self):
         """
         Tests valid inputs for the implied_probability_calculator.
         """
