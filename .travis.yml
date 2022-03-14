@@ -1,23 +1,18 @@
+--- 
+after_success: 
+  - "coverage report"
+  - coveralls
+before_install: 
+  - "pip install -U pip"
+before_script: 
+  - "pycodestyle sports_book_manager"
+install: 
+  - "pip install coverage"
+  - "pip install coveralls"
+  - "pip install pycodestyle"
+  - "pip install -r requirement.txt"
 language: python
-
-python:
-    - 3.8
-
-before_install:
-    - pip install -U pip
-
-install
-    - pip install coverage
-    - pip install coveralls
-    - pip install pycodestyle
-    - pip install -r requirements.txt
-
-before_script:
-    - pycodestyle sports_book_manager
-
-script:
-    - coverage run -m unittest discover sports_book_manager
-
-after_success:
-    - coverage report
-    - coveralls
+python: 
+  - 3.8
+script: 
+  - "scoverage run -m unittest discover sports_book_manager"
