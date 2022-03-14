@@ -29,3 +29,13 @@ AWS-foryou/
   |- README.md
   |- LICENSE
 ```
+---
+## Installation
+From your command line run the following:
+'''bash
+pip3 install git+git://github.com/rafrisci/sports-book-manager
+'''
+
+## Usage
+
+See the [example notebook](examples/example.ipynb) to see how the package works, using PointsBet and the [data files](data/).
