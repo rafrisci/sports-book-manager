@@ -6,12 +6,16 @@ python:
 before_install: 
     - "pip install -U pip"
 
+addons:
+    chrome: stable
+
 before_script: 
     - "pycodestyle sports_book_manager"
     - wget https://chromedriver.storage.googleapis.com/99.0.4844.51/chromedriver_linux64.zip
     - unzip chromedriver_linux64.zip
     - sudo mv chromedriver /usr/local/bin
     - sudo chmod a+x /usr/local/bin/chromedriver
+    - sleep 3
 
 install: 
     - "pip install coverage"
