@@ -1,6 +1,6 @@
 ![logo file](./logo.png)
 
-[![Build Status](https://app.travis-ci.com/rafrisci/sports-book-manager.svg?branch=master)](https://app.travis-ci.com/rafrisci/sports-book-manager) [![Coverage Status](https://coveralls.io/repos/github/rafrisci/sports-book-manager/badge.svg?branch=master)](https://coveralls.io/github/rafrisci/sports-book-manager?branch=master) [![GitHub license](https://img.shields.io/github/license/Naereen/StrapDown.js.svg)](https://github.com/rafrisci/sports-book-manager/blob/master/LICENSE) 
+[![Build Status](https://app.travis-ci.com/rafrisci/sports-book-manager.svg?branch=master)](https://app.travis-ci.com/rafrisci/sports-book-manager)  [![Coverage Status](https://coveralls.io/repos/github/rafrisci/sports-book-manager/badge.svg?branch=master)](https://coveralls.io/github/rafrisci/sports-book-manager?branch=master)  [![GitHub license](https://img.shields.io/github/license/Naereen/StrapDown.js.svg)](https://github.com/rafrisci/sports-book-manager/blob/master/LICENSE) 
 
 
 # sports-book-manager
