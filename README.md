@@ -35,7 +35,7 @@ AWS-foryou/
 ### On Windows Anaconda
 Enter the following into your command prompt
 ```bash
-pip3 install git+git://github.com/rafrisci/sports-book-manager
+pip3 install git+https://github.com/rafrisci/sports-book-manager
 ```
 ### On Linux
 First create a clone of the repository
