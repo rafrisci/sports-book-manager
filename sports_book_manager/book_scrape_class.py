@@ -152,8 +152,8 @@ class BookScraper(object):
                              team_parent_val=..., line_parent_tag=...,
                              line_parent_attr=..., line_parent_val=...,
                              odds_parent_tag=..., odds_parent_attr=...,
-                             odds_parent_val=..., new_domain=...,
-                             drive_path=...):
+                             odds_parent_val=..., domain=...,
+                             driver_path=...):
         """
         Changes all called parameters to their new value.
         Parameters
@@ -188,40 +188,26 @@ class BookScraper(object):
             part or all of the html atrribute value unique to the tag for odds
         new_domain : str, optional
             base website path
-        drive_path : str, optional
+        driver_path : str, optional
             the path to your chromedriver. Only needed if webdriver.Chrome()
             returns an error
         Returns
         -------
         None.
         """
-        new_vals = locals()
-        new_vals.pop('self')
-        FCN_DICT = {'ancestor_container': self.__ancestor_cont,
-                    'event_row': self.__row_cls, 'team_class': self.__team_cls,
-                    'line_class': self.__line_cls,
-                    'odds_class': self.__odds_cls,
-                    'team_parent_tag': 'team_parent_tag',
-                    'team_parent_attr': 'team_parent_attr',
-                    'team_parent_val': 'team_parent_val',
-                    'line_parent_tag': 'line_parent_tag',
-                    'line_parent_attr': 'line_parent_attr',
-                    'line_parent_val': 'line_parent_val',
-                    'odds_parent_tag': 'odds_parent_tag',
-                    'odds_parent_attr': 'odds_parent_attr',
-                    'odds_parent_val': 'odds_parent_val',
-                    'new_domain': 'domain', 'drive_path': 'driver_path'}
+        NEW_VALS = locals()
+        NEW_VALS.pop('self')
         FCN_FREE = ['team_parent_tag', 'team_parent_attr', 'team_parent_val',
                     'line_parent_tag', 'line_parent_attr', 'line_parent_val',
                     'odds_parent_tag', 'odds_parent_attr', 'odds_parent_val',
-                    'new_domain', 'drive_path']
-        for updated_val in new_vals:
-            if new_vals[updated_val] is ...:
+                    'domain', 'driver_path']
+        for updated_val in NEW_VALS:
+            if NEW_VALS[updated_val] is ...:
                 pass
             elif updated_val in FCN_FREE:
-                setattr(self, FCN_DICT[updated_val], new_vals[updated_val])
+                setattr(self, updated_val, NEW_VALS[updated_val])
             else:
-                FCN_DICT[updated_val](str(new_vals[updated_val]))
+                self.__value_formatter(updated_val, NEW_VALS[updated_val])
 
     def retrieve_sports_book(self, league):
         """
@@ -247,49 +233,27 @@ class BookScraper(object):
         line_list = []
         odds_list = []
         for event in event_rows:
-            self.__get_teams(event, self.team_class, self.team_parent_tag,
-                             self.team_parent_attr, self.team_parent_val,
-                             team_list)
-            self.__get_lines(event, self.line_class, self.line_parent_tag,
-                             self.line_parent_attr, self.line_parent_val,
-                             line_list)
-            self.__get_odds(event, self.odds_class, self.odds_parent_tag,
-                            self.odds_parent_attr, self.odds_parent_val,
-                            odds_list)
+            self.__get_wager_values(event, self.team_class,
+                                    self.team_parent_tag,
+                                    self.team_parent_attr,
+                                    self.team_parent_val, team_list)
+            self.__get_wager_values(event, self.line_class,
+                                    self.line_parent_tag,
+                                    self.line_parent_attr,
+                                    self.line_parent_val, line_list)
+            self.__get_wager_values(event, self.odds_class,
+                                    self.odds_parent_tag,
+                                    self.odds_parent_attr,
+                                    self.odds_parent_val, odds_list)
         driver.quit()
         return self.__initial_df(team_list, line_list, odds_list)
 
-    #  private methods for update_elements
+    #  private method for update_elements
     #  make sure CSS_SELECTOR can read the class values
-    def __ancestor_cont(self, container):
-        if container[0] == '.':
-            self.ancestor_container = container
-        else:
-            self.ancestor_container = '.' + container
-
-    def __row_cls(self, row_cls):
-        if row_cls[0] == '.':
-            self.event_row = row_cls
-        else:
-            self.event_row = '.' + row_cls
-
-    def __team_cls(self, team_cls):
-        if team_cls[0] == '.':
-            self.team_class = team_cls
-        else:
-            self.team_class = '.' + team_cls
-
-    def __line_cls(self, line_cls):
-        if line_cls[0] == '.':
-            self.line_class = line_cls
-        else:
-            self.line_class = '.' + line_cls
-
-    def __odds_cls(self, odds_cls):
-        if odds_cls[0] == '.':
-            self.odds_class = odds_cls
-        else:
-            self.odds_class = '.' + odds_cls
+    def __value_formatter(self, attribute, html_value):
+        if html_value[0] != '.':
+            html_value = '.' + html_value
+        setattr(self, attribute, html_value)
 
     #  private methods for retrieve_sports_book
     #  open up the driver and start to pull the website data
@@ -307,50 +271,20 @@ class BookScraper(object):
                                                     event_row)
         return event_rows
 
-    #  get the teams in the event row
-    def __get_teams(self, event, team_class, team_parent_tag, team_parent_attr,
-                    team_parent_val, team_list):
-        if team_parent_tag and team_parent_attr:
-            team_paths = (f".//{team_parent_tag}[contains(@{team_parent_attr}"
-                          f", '{team_parent_val}')]")
-            team_parent = event.find_elements(By.XPATH, team_paths)
-            for team_entry in team_parent:
-                team = team_entry.find_element(By.CSS_SELECTOR, team_class)
-                team_list.append(team.text)
+    #  get the team, line, or odds values in the event row
+    def __get_wager_values(self, event, value_class, value_parent_tag,
+                           value_parent_attr, value_parent_val, value_list):
+        if value_parent_tag and value_parent_attr:
+            value_paths = (f".//{value_parent_tag}[contains(@"
+                           f"{value_parent_attr}, '{value_parent_val}')]")
+            value_parent = event.find_elements(By.XPATH, value_paths)
+            for value_entry in value_parent:
+                value = value_entry.find_element(By.CSS_SELECTOR, value_class)
+                value_list.append(value.text)
         else:
-            teams = event.find_elements(By.CSS_SELECTOR, team_class)
-            for team in teams:
-                team_list.append(team.text)
-
-    #  get the lines in the event row
-    def __get_lines(self, event, line_class, line_parent_tag, line_parent_attr,
-                    line_parent_val, line_list):
-        if line_parent_tag and line_parent_attr:
-            line_paths = (f".//{line_parent_tag}[contains(@{line_parent_attr}"
-                          f", '{line_parent_val}')]")
-            line_parent = event.find_elements(By.XPATH, line_paths)
-            for line_entry in line_parent:
-                line = line_entry.find_element(By.CSS_SELECTOR, line_class)
-                line_list.append(line.text)
-        else:
-            lines = event.find_elements(By.CSS_SELECTOR, line_class)
-            for line in lines:
-                line_list.append(line.text)
-
-    #  get the odds in the event row
-    def __get_odds(self, event, odds_class, odds_parent_tag, odds_parent_attr,
-                   odds_parent_val, odds_list):
-        if odds_parent_tag and odds_parent_attr:
-            odds_paths = (f".//{odds_parent_tag}[contains(@{odds_parent_attr}"
-                          f", '{odds_parent_val}')]")
-            odds_parent = event.find_elements(By.XPATH, odds_paths)
-            for odds_entry in odds_parent:
-                odds = odds_entry.find_element(By.CSS_SELECTOR, odds_class)
-                odds_list.append(odds.text)
-        else:
-            spreads = event.find_elements(By.CSS_SELECTOR, odds_class)
-            for odds in spreads:
-                odds_list.append(odds.text)
+            values = event.find_elements(By.CSS_SELECTOR, value_class)
+            for value in values:
+                value_list.append(value.text)
 
     #  return the dataframe
     def __initial_df(self, teams, lines, odds):
