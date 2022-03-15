@@ -16,7 +16,7 @@ TS_2.update_html_elements(ancestor_container='.facf5sk', event_row=".f1oyvxkl",
                           odds_class='.fheif50', odds_parent_tag='button',
                           odds_parent_attr='data-test',
                           odds_parent_val='Market0OddsButton',
-                          drive_path=r'/usr/local/bin/chromedriver')
+                          driver_path=r'/usr/local/bin/chromedriver')
 
 
 class TestBookScraper(unittest.TestCase):
