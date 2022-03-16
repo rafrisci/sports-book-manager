@@ -23,11 +23,11 @@ sports-book-manager/
   |- data/
     |- hockey_odds.csv
     |- model_output_example.csv
-  |-examples/
+  |- examples/
     |-example.ipynb
-  |-docs/
-    |-written_report.pdf
-    |-presentation.pdf
+  |- docs/
+    |- written_report.pdf
+    |- presentation.pdf
   |- setup.py
   |- requirements.txt
   |- README.md
