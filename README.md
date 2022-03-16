@@ -9,7 +9,7 @@ Sports-book-manager helps programmers connect their model predictions to the spo
 ---
 ## Project Organization
 ```
-AWS-foryou/
+sports-book-manager/
   |- sports_book_manager/
     |- __init__.py
     |- book_scrape_class.py
@@ -25,6 +25,9 @@ AWS-foryou/
     |- model_output_example.csv
   |-examples/
     |-example.ipynb
+  |-docs/
+    |-written_report.pdf
+    |-presentation.pdf
   |- setup.py
   |- requirements.txt
   |- README.md
