@@ -11,7 +11,7 @@ def _find_packages():
 
 setup(
     name='sports-book-manager',
-    version='v1.0.4',
+    version='v1.0.5',
     author='Ross Friscia',
     author_email='rafrisci@uw.edu',
     description='Get the odds in your favor',
