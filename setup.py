@@ -5,6 +5,7 @@ def _find_packages():
     packages = find_packages(exclude=["*.tests", "*.tests.*", "tests.*", "tests"])
     packages.append('sports_book_manager.data')
     packages.append('sports_book_manager.examples')
+    packages.append('sports_book_manager.docs
     return packages
 
 
@@ -18,6 +19,7 @@ setup(
     packages = _find_packages(),
     package_dir={
         'sports_book_manager.data': 'data',
+        'sports_book_manager.docs': 'docs',
         'sports_book_manager.examples': 'examples',
         'sports_book_manager': 'sports_book_manager'
     },
